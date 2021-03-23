@@ -4,8 +4,10 @@ import SearchInput from './SearchInput';
 import Pagination from './Pagination';
 import './styles.css';
 
+// faz a chamada da API
 const api = 'https://gateway.marvel.com/v1/public/characters?ts=1616513366&apikey=149778318294793cdceb00e0dc41ca78&hash=b21c10921aec49d53b204c541056cd5e';
 
+//limite de 12 por paginas
 const LIMIT = 12;
 
 export default function App() {
@@ -29,6 +31,7 @@ export default function App() {
       };
     }
 
+    //monta saida do arquivo json
     fetch(`${api}characters?${qs.stringify(query)}`)
       .then((response) => response.json())
       .then((response) => {
@@ -58,6 +61,8 @@ export default function App() {
         </ul>
       )}
       {info.meta && (
+        
+        //parte da paginação
         <Pagination
           limit={LIMIT}
           total={info.meta.count}
